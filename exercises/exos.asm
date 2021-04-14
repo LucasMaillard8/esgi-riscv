@@ -9,6 +9,9 @@ num0_g: .word 124
 num1_g: .word 256
 result_g: .word 0
 
+size_array_g: .word 8
+array_g: .word 124, 256, 512, 2, 8, 4, 32, 1024
+
 .text
 la a1 sensdelavie
 lw a0 (a1)
@@ -45,9 +48,17 @@ la t2 num1_g
 lw t3 (t0)
 
 la t4 result_g
-add t4 t1 t3
+add t5 t1 t3
 
-sw t4 (t0)
+sw t5 (t4)
 lw a0 (t4)
-li a7 4
+li a7 1
+ecall
+
+
+la t0, size_array_g
+lw t0, 0(t0)
+la t1, array_g
+lw a0 0(t1)
+li a7 1
 ecall
